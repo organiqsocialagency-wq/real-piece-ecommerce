@@ -2,7 +2,7 @@
 
 Concept di ecommerce per T-shirt Real Piece, realizzato in HTML, CSS e JavaScript.
 
-La pagina presenta le **otto grafiche Great Era** fornite dal brand, con mockup illustrativi e prezzi dimostrativi. La guida taglie usa le misure indicate per il modello utilizzato. Il carrello funziona solo nel browser: gli acquisti non sono attivi.
+La pagina presenta le **otto grafiche Great Era** fornite dal brand, con mockup illustrativi e prezzi dimostrativi. La guida taglie usa le misure indicate per il modello utilizzato. Ogni prodotto permette di scegliere fra nove colori (Nero, Giallo, Blu, Verde, Viola, Bianco, Rosso, Crema e Grigio) e le taglie XS–5XL. Le foto mostrano il modello nero; il carrello distingue colore e taglia, conserva la scelta e aggiorna i vecchi articoli salvati assegnando loro Nero. Il carrello funziona solo nel browser: gli acquisti non sono attivi.
 
 La sezione recensioni include due feedback con foto forniti dall’utente e nove testi chiaramente indicati come esempi. La prossima collezione ha un’anteprima con effetto DecayCard, sfondo LiquidEther nei colori del mare e countdown al 1 febbraio 2027, in attesa della data ufficiale del drop. Gli effetti ispirati ai componenti React Bits forniti sono adattati a JavaScript senza dipendenze; rispettano le preferenze di movimento ridotto.
 

@@ -170,3 +170,23 @@
 .next-collection .countdown-number{font-size:clamp(30px,3.8vw,50px)}
 @media(max-width:1000px) and (min-width:801px){.next-collection{padding:65px 5%;gap:24px 5%}.next-collection .countdown-wrap{padding:22px 18px}}
 @media(max-width:800px){.next-collection{grid-template-columns:1fr;grid-template-areas:"copy" "art" "countdown";gap:35px}.next-collection-art{max-width:340px}.next-collection .countdown-wrap{justify-self:center}.next-collection .countdown-number{font-size:clamp(30px,7vw,50px)}}
+
+/* Colori disponibili, selezionabili anche da tastiera. */
+.catalog-color-link{padding:0;background:none;font-size:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;min-height:26px}
+.detail-copy .product-meta{margin:16px 0 0}
+.color-options{padding:0;margin:24px 0 16px;border:0;min-width:0}
+.color-options legend{padding:0;margin-bottom:12px;font-size:12px}
+.color-options legend strong{font-weight:600}
+.color-options-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.color-options-grid label{position:relative;min-width:0;cursor:pointer}
+.color-options-grid input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.color-option{display:flex;align-items:center;justify-content:flex-start;gap:8px;min-height:42px;padding:8px 10px;border:1px solid #d2cfc5;border-radius:5px;font-size:11px;transition:border-color .18s,background .18s}
+.color-option-swatch{display:block;flex:0 0 18px;width:18px;height:18px;border-radius:50%;background:var(--swatch-color);box-shadow:inset 0 0 0 1px #08080825}
+.color-options-grid input:checked+.color-option{border-color:var(--ink);background:#ece8dd;box-shadow:inset 0 0 0 1px var(--ink)}
+.color-options-grid input:focus-visible+.color-option{outline:3px solid var(--red);outline-offset:3px}
+.color-options-grid label:hover .color-option{border-color:#65635d}
+.color-photo-note{margin:10px 0 0;color:var(--muted);font-size:10px;line-height:1.5}
+.cart-item p.cart-item-variant{display:flex;align-items:center;gap:6px}
+.cart-item-variant .swatch{flex-shrink:0;width:10px;height:10px}
+@media(max-width:700px){.color-option{min-height:44px;padding:8px;gap:7px}.color-options{margin-top:22px}}
+@media(prefers-reduced-motion:reduce){.color-option{transition:none}}
