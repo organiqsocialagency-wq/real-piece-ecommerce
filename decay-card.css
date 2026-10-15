@@ -34,6 +34,57 @@
 .decay-card.is-decay-ready { will-change: transform; }
 .decay-card.is-decay-ready .decay-card__canvas { opacity: 1; }
 .decay-card.is-decay-ready .decay-card__fallback { opacity: 0; }
+
+/* L'invito resta nitido sopra l'anteprima sfocata; il canvas conserva DecayCard. */
+.decay-teaser {
+  display: block;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: none;
+  color: var(--ivory, #fff8de);
+  text-align: center;
+  cursor: pointer;
+}
+.decay-teaser > .decay-card__fallback,
+.decay-teaser > .decay-card__canvas {
+  filter: blur(14px) brightness(.64) saturate(.8);
+  transition: filter .55s ease;
+}
+.decay-teaser__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+  background: radial-gradient(ellipse, #08080838, transparent 75%);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+.decay-teaser__overlay > span {
+  max-width: 250px;
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(25px, 2.5vw, 32px);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -.4px;
+  text-shadow: 0 2px 14px #0008;
+}
+.decay-teaser.is-preview-revealed > .decay-card__fallback,
+.decay-teaser.is-preview-revealed > .decay-card__canvas {
+  filter: blur(0) brightness(1) saturate(1);
+}
+.decay-teaser.is-preview-revealed > .decay-teaser__overlay { opacity: 0; }
+.decay-teaser:not(.is-preview-enhanced):focus-visible > .decay-card__fallback,
+.decay-teaser:not(.is-preview-enhanced):focus-visible > .decay-card__canvas { filter: none; }
+.decay-teaser:not(.is-preview-enhanced):focus-visible > .decay-teaser__overlay { opacity: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .decay-teaser:not(.is-preview-enhanced):hover > .decay-card__fallback,
+  .decay-teaser:not(.is-preview-enhanced):hover > .decay-card__canvas { filter: none; }
+  .decay-teaser:not(.is-preview-enhanced):hover > .decay-teaser__overlay { opacity: 0; }
+}
 @media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
   .decay-card { transform: none !important; will-change: auto !important; }
   .decay-card__canvas { display: none; }

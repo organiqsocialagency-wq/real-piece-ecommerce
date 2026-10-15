@@ -2,7 +2,7 @@
 
 Concept di ecommerce per T-shirt Real Piece, realizzato in HTML, CSS e JavaScript.
 
-La pagina presenta le **otto grafiche Great Era** fornite dal brand, con mockup illustrativi e prezzi dimostrativi. La guida taglie riprende il modello ALRRGPB indicato su Amazon. Il carrello funziona solo nel browser: gli acquisti non sono attivi.
+La pagina presenta le **otto grafiche Great Era** fornite dal brand, con mockup illustrativi e prezzi dimostrativi. La guida taglie usa le misure indicate per il modello utilizzato. Il carrello funziona solo nel browser: gli acquisti non sono attivi.
 
 La sezione recensioni include due feedback con foto forniti dall’utente e nove testi chiaramente indicati come esempi. La prossima collezione ha un’anteprima con effetto DecayCard, sfondo LiquidEther nei colori del mare e countdown al 1 febbraio 2027, in attesa della data ufficiale del drop. Gli effetti ispirati ai componenti React Bits forniti sono adattati a JavaScript senza dipendenze; rispettano le preferenze di movimento ridotto.
 
