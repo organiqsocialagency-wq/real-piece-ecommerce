@@ -1,0 +1,12 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built-in edit",
+  "asset": "great-era-model-regular.png",
+  "references": [
+    "great-era-model-blank.png",
+    "review-roger-front.jpeg",
+    "review-roger-back.jpeg"
+  ],
+  "prompt": "Use case: identity-preserve / precise-object-edit. Asset type: layered ecommerce garment configurator base photograph. EDIT IMAGE 1 ONLY. Images 2 and 3 are references ONLY for T-shirt cut, sleeve length and close regular fit. Image 1 is a portrait 4:5 split-screen studio photo: the SAME young Black male model front view left and back view right, with black jeans and hands in pockets. Keep the exact same person, facial identity, natural hair, head angles, body, pose, hands, black jeans, gray studio background, lighting, camera angle, split composition, crop and scale. Change ONLY the T-shirts in the two halves. Replace both oversized black T-shirts with the same natural WHITE cotton crewneck regular-fit shirt: closer fit around chest and torso as images 2 and 3, natural shoulder seams at the shoulder rather than dropped shoulders, shorter sleeves ending around mid upper-arm and closer around arms, hem a little shorter at upper hips. The model must retain original slim build and exact pose; don't make him look like the reference person. Both shirts completely BLANK: remove ALL REAL PIECE lettering, logos and prints from the front and the back. Cotton should have realistic white studio midtones, creases, seams, fine fabric and shadow detail, not clipped pure-white highlights; this blank white shirt will be recolored interactively in code and exact vector artwork added later. Keep the full current front/back composition and model framing, no additional objects, no watermark or text. Output a clean high-resolution photograph 4:5 aspect ratio matching image 1.",
+  "implementation": "One shared regular-fit photo with SVG fabric masks, interactive color and separate original logo/artwork. Logo visible area 170 × 40.74 at (190,458); back artwork contained in 300 × 340 at (693,470), in 1122 × 1402 image coordinates."
+}
