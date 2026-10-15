@@ -86,35 +86,27 @@
 @media(max-width:500px){.next-collection{padding:48px 20px}.next-collection h2{font-size:39px}.countdown-wrap{padding:22px 13px}.countdown-number{font-size:clamp(27px,8vw,38px)}.countdown-label{font-size:7px;letter-spacing:.7px}.countdown-heading,.countdown-note{font-size:8px}}
 @media(prefers-reduced-motion:reduce){.countdown-digit-rail{transition:none!important}}
 
-/* Una superficie d'acqua condivisa da card e barra di navigazione. */
-.water-surface{position:relative;isolation:isolate;overflow:hidden}
-.water-canvas{position:absolute;inset:0;z-index:2;display:block;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen;opacity:.82;transition:opacity .25s}
-.water-surface:hover>.water-canvas{opacity:1}
-.sea-visual>.water-canvas{opacity:.48}
-.sea-visual:hover>.water-canvas{opacity:.9}
-.sea-visual{position:relative;display:block;width:100%;aspect-ratio:4/5;padding:0;overflow:hidden;border-radius:14px;background:linear-gradient(145deg,#126d7e 0%,#0a3f51 45%,#072d3f 100%);border:1px solid #76cdd182;box-shadow:0 8px 18px #06364336,inset 0 0 0 2px #b6f6ed45;transition:transform .3s,box-shadow .3s}
-.sea-visual:hover{transform:translateY(-4px);box-shadow:0 17px 30px #06364355,inset 0 0 0 2px #a8e7e67c}
-.sea-media{position:absolute;inset:8px;z-index:1;display:block;overflow:hidden;border-radius:8px;background:#dfded9;box-shadow:0 0 0 1px #e9ffff5e,0 5px 16px #001e2b5e}
-.sea-media img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
-.sea-visual .product-tag{z-index:3;top:16px;left:16px}
-.card-nav-bar{position:relative;grid-template-columns:105px 175px minmax(0,1fr) 120px;gap:15px;overflow:hidden;background:linear-gradient(110deg,#0a2e3d 0%,#0d5160 44%,#082837 100%);border-color:#71c4ca6c;box-shadow:0 13px 34px #0006,inset 0 1px 0 #a9e5e45c}
-.card-nav-bar>.water-canvas{z-index:0;opacity:.7}
-.card-nav-bar>*:not(.water-canvas){position:relative;z-index:1}
+/* Card e navigazione: superfici neutre e interazioni leggere. */
+.catalog-image-button{position:relative;display:block;width:100%;aspect-ratio:4/5;padding:0;overflow:hidden;border-radius:10px;background:#d3d0ce;border:1px solid #d8d3c9;box-shadow:0 2px 7px #08080808;transition:border-color .2s,box-shadow .2s}
+.catalog-media{position:absolute;inset:0;display:block;overflow:hidden;border-radius:inherit;background:#d3d0ce}
+.catalog-media img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.catalog-image-button .product-tag{z-index:1;top:12px;left:12px}
+.catalog-image-button:focus-visible{border-color:#9e272c;box-shadow:0 5px 16px #08080812}
+.card-nav-bar{position:relative;grid-template-columns:105px 175px minmax(0,1fr) 120px;gap:15px;background:#22211f;border-color:#fff8de26;box-shadow:0 10px 28px #0003,inset 0 1px 0 #ffffff0a}
 .card-nav .logo{justify-self:start}
-.gooey-nav{position:relative;display:flex;align-items:center;justify-self:center;min-height:44px;padding:3px;border:1px solid #b7eff04f;border-radius:25px;background:#0329368c;box-shadow:inset 0 1px 0 #ffffff25}
-.gooey-nav a,.gooey-nav button{display:grid;place-items:center;min-width:75px;min-height:38px;padding:0 13px;border:0;border-radius:20px;background:transparent;color:#deeeee;font-size:11px;font-weight:500;white-space:nowrap;transition:background .25s,box-shadow .25s}
-.gooey-nav a:hover,.gooey-nav button:hover,.gooey-nav [aria-current=page]{background:#d0fcf426;color:#fff;box-shadow:inset 0 0 0 1px #d9fdfc55,0 0 16px #63ced646}
-.card-nav-menu:hover{background:#dcfdf027}
+.gooey-nav{position:relative;display:flex;align-items:center;justify-self:center;min-height:44px;padding:3px;border:1px solid #fff8de24;border-radius:25px;background:#11111135}
+.gooey-nav a,.gooey-nav button{display:grid;place-items:center;min-width:75px;min-height:38px;padding:0 13px;border:0;border-radius:20px;background:transparent;color:#e2dfd4;font-size:11px;font-weight:500;white-space:nowrap;transition:background .2s,color .2s}
+.gooey-nav [aria-current=page]{background:#fff8de16;color:var(--ivory)}
+@media(hover:hover) and (pointer:fine){.catalog-image-button:hover{border-color:#b9b2a6;box-shadow:0 7px 18px #08080812}.gooey-nav a:hover,.gooey-nav button:hover{background:#fff8de12;color:var(--ivory)}.card-nav-menu:hover{background:#fff8de12}}
 @media(max-width:850px){.card-nav-bar{grid-template-columns:90px 155px minmax(0,1fr) 96px;gap:5px}.card-nav .logo,.card-nav .logo img{width:155px}.gooey-nav a,.gooey-nav button{min-width:63px;padding:0 9px;font-size:10px}}
-@media(max-width:700px){.card-nav-bar{grid-template-columns:70px 1fr 90px}.card-nav .logo{justify-self:center}.gooey-nav{display:none}.sea-visual .product-tag{top:12px;left:12px}}
-@media(prefers-reduced-motion:reduce){.water-canvas{opacity:.55}.sea-visual:hover{transform:none}}
+@media(max-width:700px){.card-nav-bar{grid-template-columns:70px 1fr 90px}.card-nav .logo{justify-self:center}.gooey-nav{display:none}.catalog-image-button .product-tag{top:10px;left:10px}}
 
 /* Great Era: un unico mockup fronte/retro, con le grafiche originali sul retro. */
 .product-visual{position:relative;display:block;overflow:hidden;background:#d3d0ce;aspect-ratio:4/5}
 .product-visual .mockup-photo{display:block;width:100%;height:100%;object-fit:contain}
 .product-visual .mockup-print{position:absolute;left:58%;top:29.5%;width:35%;height:29%;object-fit:contain;filter:saturate(.93) contrast(.98);pointer-events:none}
-.sea-media .product-visual{width:100%;height:100%}
-.sea-media .product-visual img{transform:none!important}
+.catalog-media .product-visual{width:100%;height:100%}
+.catalog-media .product-visual img{transform:none!important}
 .gallery-stage{height:390px;display:grid;place-items:center;overflow:hidden;background:#d3d0ce}
 .product-visual-detail{height:390px;width:312px;max-width:100%}
 .gallery-standalone{width:100%;height:100%;object-fit:contain}
