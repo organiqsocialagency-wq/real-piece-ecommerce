@@ -1,0 +1,41 @@
+/* DecayCard teaser: full artwork at rest, room around the canvas for torn edges. */
+.decay-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  flex: none;
+  isolation: isolate;
+  transform-origin: center;
+}
+.decay-card__fallback {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.decay-card__canvas {
+  position: absolute;
+  top: -12%;
+  left: -12%;
+  display: block;
+  width: 124%;
+  height: 124%;
+  max-width: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.decay-card.is-decay-ready { will-change: transform; }
+.decay-card.is-decay-ready .decay-card__canvas { opacity: 1; }
+.decay-card.is-decay-ready .decay-card__fallback { opacity: 0; }
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .decay-card { transform: none !important; will-change: auto !important; }
+  .decay-card__canvas { display: none; }
+  .decay-card .decay-card__fallback { opacity: 1 !important; }
+}

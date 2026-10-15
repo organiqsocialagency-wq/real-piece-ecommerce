@@ -1,0 +1,60 @@
+/* ReflectiveCard-inspired studio lighting for the existing product photographs. */
+.catalog-image-button[data-reflective-card]{
+  --reflect-x:50%;
+  --reflect-y:50%;
+  --reflect-angle:125deg;
+  --reflect-rx:0deg;
+  --reflect-ry:0deg;
+  --reflect-lift:0px;
+  --reflect-active:0;
+  isolation:isolate;
+  transform:perspective(950px) translateY(var(--reflect-lift)) rotateX(var(--reflect-rx)) rotateY(var(--reflect-ry));
+  transform-origin:center;
+  backface-visibility:hidden;
+}
+.catalog-image-button[data-reflective-card] .catalog-media{z-index:0}
+.catalog-image-button[data-reflective-card] .product-tag{z-index:3}
+.catalog-image-button[data-reflective-card]::before,
+.catalog-image-button[data-reflective-card]::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:var(--reflect-active);
+}
+.catalog-image-button[data-reflective-card]::before{
+  z-index:1;
+  background:
+    radial-gradient(ellipse at var(--reflect-x) var(--reflect-y),#ffffff4a 0%,#ffffff0a 28%,transparent 63%),
+    linear-gradient(var(--reflect-angle),transparent 19%,#ffffff05 33%,#ffffff36 43%,#ffffff5e 47%,#ffffff0d 55%,transparent 67%);
+  background-size:100% 100%,185% 185%;
+  background-position:center,var(--reflect-x) var(--reflect-y);
+  mix-blend-mode:screen;
+}
+.catalog-image-button[data-reflective-card]::after{
+  z-index:2;
+  background:linear-gradient(var(--reflect-angle),#ffffff7a,transparent 27%,transparent 68%,#ffffff40);
+  padding:1px;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .catalog-image-button[data-reflective-card].is-reflecting{
+    will-change:transform;
+    border-color:#c3bdb2;
+    box-shadow:0 15px 28px -15px #15151548,0 4px 10px #08080812;
+  }
+}
+.catalog-image-button[data-reflective-card]:focus-visible{
+  outline:3px solid var(--red,#9e272c);
+  outline-offset:4px;
+  border-color:var(--red,#9e272c);
+}
+@media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){
+  .catalog-image-button[data-reflective-card]{transform:none;will-change:auto}
+  .catalog-image-button[data-reflective-card]::before,
+  .catalog-image-button[data-reflective-card]::after{display:none}
+}

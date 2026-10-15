@@ -1,0 +1,25 @@
+/* The canvas is a decorative background; the section owns pointer input. */
+.next-collection > .liquid-ether {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 18% 84%, rgb(6 59 82 / 40%), transparent 65%),
+    radial-gradient(ellipse at 82% 25%, rgb(12 113 134 / 18%), transparent 60%);
+}
+
+.next-collection .liquid-ether__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: .75;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .next-collection .liquid-ether__canvas { display: none; }
+}
