@@ -1,0 +1,64 @@
+/* Benvenuto e costi d'ordine: anteprima promozionale locale. */
+.welcome-bar{display:flex;align-items:center;justify-content:center;gap:22px;padding:12px 4.2%;background:#ede4d1;border-bottom:1px solid #d8cbb1;color:var(--ink)}
+.welcome-bar-kicker{font-size:8px;letter-spacing:1.7px;color:var(--red);white-space:nowrap}
+.welcome-bar p{display:flex;align-items:center;gap:14px;margin:0;font-size:11px}
+.welcome-bar p strong{font-weight:500}
+.welcome-bar-clock{border-left:1px solid #c8bda5;padding-left:14px;color:var(--red);font-weight:600;font-variant-numeric:tabular-nums}
+.welcome-bar button{padding:5px 0;background:none;border-bottom:1px solid #8f8370;font-size:10px;min-height:30px}
+.welcome-dialog{width:min(470px,94vw);max-height:94dvh;border:1px solid #d6c7aa;border-radius:9px;background:var(--paper);overflow-y:auto}
+.welcome-dialog:before{content:'';position:absolute;top:0;left:0;right:0;height:7px;background:var(--red)}
+.welcome-dialog .close-dialog{top:14px;right:12px;background:transparent}
+.welcome-dialog-inner{padding:40px 40px 25px;text-align:center}
+.welcome-label{font-size:8px;font-weight:600;letter-spacing:1.8px;color:var(--red);margin:0 0 18px}
+.welcome-dialog h2{font-size:43px;line-height:1.1;letter-spacing:-1.5px;margin:0 0 16px}
+.welcome-dialog h2 em{color:var(--red)}
+.welcome-amount{font-family:var(--serif);font-size:76px;letter-spacing:-4px;line-height:1;color:var(--red);margin-bottom:16px}
+.welcome-amount>span{display:block;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:1.4px;text-transform:uppercase;line-height:1.5;margin-top:7px}
+#welcome-description{font-size:12px;line-height:1.8;color:#575146;margin:0 auto 18px;max-width:330px}
+.welcome-time-box{display:flex;align-items:center;justify-content:space-between;gap:15px;border-top:1px solid #d9cfbc;border-bottom:1px solid #d9cfbc;padding:13px 0}
+.welcome-time-box>span{font-size:8px;line-height:1.7;letter-spacing:1px;text-align:left;max-width:150px;color:#6d6251}
+.welcome-time-box time{font-size:29px;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:1px;color:var(--ink)}
+.welcome-offer-price{font-size:11px;color:#6a6153;margin:17px 0}
+.welcome-offer-price strong{color:var(--ink);font-size:14px;margin-left:4px}
+.welcome-dialog .button{width:100%;justify-content:center;padding:17px 20px;border-radius:3px}
+.welcome-terms{font-size:9px;line-height:1.7;color:#7b7060;margin:15px auto 0;max-width:310px}
+.welcome-demo-note{display:inline-block;font-size:8px;line-height:1.6;color:#695c47;margin:12px 0 0;padding:5px 8px;border:1px solid #d9cfbc;border-radius:3px}
+.welcome-ended{font-size:12px;line-height:1.8;margin:18px 0;color:#6a6153}
+.welcome-price-note{font-size:10px;color:var(--red);line-height:1.6;margin:7px 0 0}
+.welcome-price-note strong{font-weight:600;white-space:nowrap}
+.detail-copy .welcome-price-note{font-size:11px;margin-top:9px}
+.product-delivery{font-size:10px;line-height:1.8;color:#5b554a;margin:17px 0 0}
+.cart-welcome-note{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:11px 13px;margin-bottom:14px;background:#f0e5d3;border:1px solid #ded0b8;border-radius:5px;color:var(--red);font-size:10px;line-height:1.6}
+.cart-welcome-note time{font-size:15px;white-space:nowrap;font-weight:600;font-variant-numeric:tabular-nums}
+.shipping-progress{padding:16px 0 22px;margin-bottom:22px;border-bottom:1px solid var(--line)}
+.shipping-progress p{font-size:12px;line-height:1.6;margin-bottom:12px;color:#524b40}
+.shipping-progress p strong{color:var(--ink)}
+.shipping-progress-track{height:6px;background:#e5dece;overflow:hidden;border-radius:20px}
+.shipping-progress-track>span{display:block;height:100%;background:var(--red);border-radius:inherit;transition:width .3s ease}
+.shipping-progress.is-free .shipping-progress-track>span{background:#355f4c}
+.shipping-progress.is-free p{color:#355f4c}
+.shipping-threshold-note{display:block;margin-top:8px;font-size:9px;line-height:1.5;color:#827665}
+.order-costs{margin:24px 0 20px}
+.order-costs>div{display:flex;align-items:baseline;justify-content:space-between;gap:15px;font-size:12px;line-height:1.7;padding:6px 0}
+.order-costs>div>span:last-child{white-space:nowrap}
+.order-costs .order-discount{color:var(--red)}
+.order-costs .order-grand-total{font-size:20px;margin-top:12px;padding-top:17px;border-top:1px solid #d5cdbc;color:var(--ink)}
+.cart-item del{color:#8b8273;font-size:10px;margin-right:4px}
+.cart-item .cart-unit-note{font-size:9px;margin-left:3px}
+.shipping-coverage{margin:23px 0 0;padding:19px 16px;background:#f1ece0;border:1px solid #ded5c3;border-radius:6px}
+.shipping-coverage-heading>strong{display:block;font-family:var(--serif);font-weight:400;font-size:19px;line-height:1.3;color:var(--ink)}
+.shipping-coverage-heading>span{display:block;font-size:10px;color:#6b6152;margin-top:8px}
+.shipping-coverage-track{display:flex;height:9px;margin:16px 0 10px;overflow:hidden;border-radius:20px;background:#d2c7b4}
+.shipping-coverage-track>span{display:block;height:100%;transition:width .3s ease}
+.shipping-coverage-us{background:var(--red)}
+.shipping-coverage-you{background:#b9ae9b}
+.shipping-coverage-legend{display:flex;justify-content:space-between;gap:10px;font-size:9px;line-height:1.6;color:#625749}
+.shipping-coverage-legend>span{display:flex;align-items:center;gap:5px}
+.shipping-coverage-legend i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red)}
+.shipping-coverage-legend>span:last-child i{background:#b9ae9b}
+.shipping-coverage-legend strong{font-weight:600;white-space:nowrap}
+.shipping-coverage>p{font-size:10px;line-height:1.8;color:#6c6050;margin:15px 0 0}
+.shipping-coverage>small{display:block;font-size:8px;line-height:1.7;color:#8a7a63;margin-top:9px}
+.empty-cart .empty-shipping-note{font-size:10px;line-height:1.8}
+@media(max-width:700px){.welcome-bar{gap:8px 14px;flex-wrap:wrap;padding:10px 15px}.welcome-bar-kicker{display:none}.welcome-bar p{font-size:10px;gap:10px}.welcome-bar-clock{padding-left:10px}.welcome-bar button{font-size:9px;min-height:30px}.welcome-price-note{font-size:8px}.welcome-dialog-inner{padding:38px 25px 24px}.welcome-dialog h2{font-size:39px}.welcome-amount{font-size:69px}.welcome-label{font-size:7px}.welcome-demo-note{font-size:7px}.welcome-time-box>span{font-size:7px}.shipping-coverage{padding:17px 14px}.shipping-coverage-legend{font-size:8px;gap:8px}.shipping-coverage-legend>span{gap:4px}.shipping-coverage-heading>strong{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.shipping-progress-track>span,.shipping-coverage-track>span{transition:none}}

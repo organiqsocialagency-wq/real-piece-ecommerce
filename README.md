@@ -19,3 +19,11 @@ Aprire `http://localhost:4173` dalla cartella del repository.
 Servono un catalogo approvato, un checkout reale, inventario e informazioni definitive su spedizioni, resi, privacy e condizioni di vendita.
 
 Design ispirato alla struttura del template [UniClub](https://templatesjungle.com/downloads/uniclub-t-shirt-bootstrap-5-ecommerce-website-template/).
+
+## Prezzi, benvenuto e spedizione dimostrativi
+
+Ogni maglia costa 35 €. Alla prima visita della promozione compare un benvenuto chiaramente dimostrativo: 10 € in meno per ogni capo per 10 minuti. La scadenza è salvata localmente e non ricomincia con il ricaricamento; senza storage resta valida nella sessione corrente. Non è una verifica del primo ordine reale.
+
+La spedizione è gratuita da 50 € di prodotti **dopo gli sconti**; altrimenti costa 3,70 €. Il riepilogo e il carrello condividono il calcolo in centesimi. La barra mostra il progresso verso i 50 €; la ripartizione dimostrativa è 78% Real Piece / 22% cliente sotto soglia, 100% / 0% sopra soglia. Consegna stimata: 1–2 settimane dall’ordine.
+
+Le recensioni sono presentate in un DriftWall adattato dal componente React Bits fornito, con colonne alternate, pausa e lettura completa. Su mobile e con movimento ridotto restano disponibili gli articoli statici originali.
