@@ -8,6 +8,8 @@
 .reviews-drift-control--read:hover{background:var(--red);border-color:var(--red)}
 .reviews-drift-wall{--reviews-drift-tile-w:285px;--reviews-drift-unit:292px;--reviews-drift-gap:18px;position:relative;width:100%;height:650px;overflow:hidden;perspective:1200px;perspective-origin:50% 50%;isolation:isolate;-webkit-mask-image:radial-gradient(ellipse 82% 90% at 50% 47%,#000 37%,transparent 100%);mask-image:radial-gradient(ellipse 82% 90% at 50% 47%,#000 37%,transparent 100%)}
 .reviews-drift-plane{position:absolute;top:50%;left:50%;height:900px;display:flex;gap:var(--reviews-drift-gap);transform-style:preserve-3d;transform-origin:50% 50%;will-change:transform}
+.reviews-drift-column.is-hovered{z-index:3}
+.reviews-drift-tile.is-active{z-index:4}
 .reviews-drift-column{width:var(--reviews-drift-tile-w);flex:0 0 var(--reviews-drift-tile-w);position:relative;transform-style:preserve-3d}
 .reviews-drift-track{display:flex;flex-direction:column;transform-style:preserve-3d;will-change:transform}
 .reviews-drift-tile{position:relative;display:block;padding:0;background:transparent;width:100%;height:var(--reviews-drift-unit);flex:0 0 auto;text-align:left;transform-style:preserve-3d;outline:none;color:var(--ink)}
@@ -23,7 +25,7 @@
 .reviews-drift-photos img{height:81px;width:70px;object-fit:cover;object-position:center;border-radius:4px;background:#e8e1d1;border:1px solid #e0d8c7}
 .reviews-drift-tile--photos .reviews-drift-title{font-size:22px;margin-bottom:8px}
 .reviews-drift-tile--photos .reviews-drift-excerpt{-webkit-line-clamp:2;font-size:10px}
-.reviews-drift-tile.is-active .reviews-drift-inner{opacity:1;transform:translateZ(48px);box-shadow:0 22px 40px -22px #3d2f1e66;border-color:#ae9d7f}
+.reviews-drift-tile.is-active .reviews-drift-inner{opacity:1;transform:translateY(-2px) scale(1.045);box-shadow:0 22px 40px -22px #3d2f1e66;border-color:#ae9d7f}
 .reviews-drift-dialog{width:min(850px,94vw);border:1px solid #ded6c6;border-radius:12px;padding:45px 25px 25px;max-height:91dvh}
 .reviews-drift-dialog .close-dialog{background:var(--paper);color:var(--ink);right:9px;top:7px}
 .reviews-drift-dialog .review-card{border:0;background:transparent;padding:18px 12px 5px}

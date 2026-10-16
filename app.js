@@ -46,7 +46,7 @@ function updateWelcomeOffer(){
   $('#welcome-bar').hidden=!active;
   $('#welcome-ended').hidden=active;
   $('#welcome-offer-price').hidden=!active;
-  $('#welcome-shop').textContent=active?'Scegli le tue maglie':'Esplora la collezione';
+  $('#welcome-shop').textContent=active?'Ordina ora':'Esplora la collezione';
   if(active!==welcomeWasActive){
     welcomeWasActive=active;
     renderProducts();

@@ -15,12 +15,9 @@
     let frame = 0;
     let lastTime = null;
     let inView = false;
-    let userPaused = false;
     let listMode = false;
     let pointerInside = false;
     let hoveredColumn = -1;
-    let pointer = { x: 0, y: 0 };
-    let damped = { x: 0, y: 0 };
     let lastColumnCount = 0;
     let returnFocus = null;
 
@@ -28,21 +25,15 @@
     toolbar.className = 'reviews-drift-toolbar';
     const hint = document.createElement('p');
     hint.className = 'reviews-drift-hint';
-    hint.textContent = 'Una voce alla volta. Seleziona una recensione per leggerla.';
+    hint.textContent = 'Passa su una recensione per fermare la colonna. Selezionala per leggerla.';
     const controls = document.createElement('div');
     controls.className = 'reviews-drift-controls';
-    const pause = document.createElement('button');
-    pause.type = 'button';
-    pause.className = 'reviews-drift-control';
-    pause.setAttribute('aria-pressed', 'false');
-    pause.setAttribute('aria-label', 'Metti in pausa il movimento delle recensioni');
-    pause.textContent = 'Pausa';
     const toggle = document.createElement('button');
     toggle.type = 'button';
     toggle.className = 'reviews-drift-control reviews-drift-control--read';
     toggle.setAttribute('aria-expanded', 'false');
     toggle.textContent = 'Leggi tutte le recensioni';
-    controls.append(pause, toggle);
+    controls.append(toggle);
     toolbar.append(hint, controls);
 
     const wall = document.createElement('div');
@@ -74,14 +65,14 @@
     document.body.append(dialog);
 
     const enabled = () => !compact.matches && !reduced.matches;
-    const canAnimate = () => enabled() && !listMode && inView && !document.hidden && !userPaused && !dialog.open;
+    const canAnimate = () => enabled() && !listMode && inView && !document.hidden && !dialog.open;
     const stop = () => {
       if (frame) cancelAnimationFrame(frame);
       frame = 0;
       lastTime = null;
     };
     const planeTransform = () => {
-      plane.style.transform = `translate(-50%, -50%) scale(1.09) rotateX(${12 + damped.y}deg) rotateY(${-10 + damped.x}deg) translateZ(-65px)`;
+      plane.style.transform = 'translate(-50%, -50%) scale(1.09) rotateX(12deg) rotateY(-10deg) translateZ(-65px)';
     };
 
     function tileFor(article, reviewIndex, columnIndex) {
@@ -102,10 +93,12 @@
         clone.removeAttribute('aria-label');
         top.append(clone);
       }
-      const label = document.createElement('span');
-      label.className = article.classList.contains('review-example') ? 'reviews-drift-label reviews-drift-label--example' : 'reviews-drift-label';
-      label.textContent = article.classList.contains('review-example') ? 'Recensione di esempio' : 'Recensione con foto';
-      top.append(label);
+      if (!article.classList.contains('review-example')) {
+        const label = document.createElement('span');
+        label.className = 'reviews-drift-label';
+        label.textContent = 'Recensione con foto';
+        top.append(label);
+      }
       const title = document.createElement('span');
       title.className = 'reviews-drift-title';
       title.textContent = article.querySelector('h3')?.textContent || 'Recensione';
@@ -150,6 +143,7 @@
       columns = groups.map((group, c) => {
         const column = document.createElement('div');
         column.className = 'reviews-drift-column';
+        column.dataset.driftColumn = String(c);
         const track = document.createElement('div');
         track.className = 'reviews-drift-track';
         const period = group.length * unit;
@@ -163,8 +157,10 @@
         const offset = c < 2 ? period - (240 + c * 80) : period * ((c * 0.37 + 0.08) % 1);
         track.style.transform = `translate3d(0, ${-offset}px, 0)`;
         const pseudo = ((c * 0.6180339887 + 0.35) % 1) * 2 - 1;
-        return { track, period, offset, velocity: 0, speed: 26 * (1 + 0.35 * pseudo) * (c % 2 === 0 ? 1 : -1) };
+        return { element: column, track, period, offset, velocity: 0, speed: 26 * (1 + 0.35 * pseudo) * (c % 2 === 0 ? 1 : -1) };
       });
+      hoveredColumn = -1;
+      pointerInside = false;
       plane.replaceChildren(fragment);
       plane.style.setProperty('--reviews-drift-columns', String(count));
       planeTransform();
@@ -175,13 +171,14 @@
       if (!canAnimate()) { stop(); return; }
       const dt = lastTime === null ? 0 : Math.min(0.05, (timestamp - lastTime) / 1000);
       lastTime = timestamp;
-      const damp = 1 - Math.exp(-dt / 0.16);
-      damped.x += (pointer.x * 3 - damped.x) * damp;
-      damped.y += (-pointer.y * 3 - damped.y) * damp;
-      planeTransform();
       columns.forEach((column, c) => {
-        const target = pointerInside && hoveredColumn === c ? 0 : column.speed;
-        column.velocity += (target - column.velocity) * (1 - Math.exp(-dt / (target === 0 ? 0.13 : 0.28)));
+        // Freeze the track immediately and exactly; no inertia or modulo rebase
+        // while the pointer is in this column, including the gaps between cards.
+        if (pointerInside && hoveredColumn === c) {
+          column.velocity = 0;
+          return;
+        }
+        column.velocity += (column.speed - column.velocity) * (1 - Math.exp(-dt / 0.28));
         column.offset = ((column.offset + column.velocity * dt) % column.period + column.period) % column.period;
         column.track.style.transform = `translate3d(0, ${-column.offset}px, 0)`;
       });
@@ -205,25 +202,36 @@
     }
     function clearHover() {
       pointerInside = false;
-      pointer = { x: 0, y: 0 };
       hoveredColumn = -1;
+      columns.forEach(column => column.element.classList.remove('is-hovered'));
       plane.querySelector('.is-active')?.classList.remove('is-active');
     }
 
     wall.addEventListener('pointermove', event => {
       if (event.pointerType === 'touch') return;
+      const columnElement = event.target.closest('.reviews-drift-column');
+      // Keep the current hover across the small visual gaps instead of toggling
+      // it as the enlarged card crosses its stationary button's hit area.
+      if (!columnElement || !plane.contains(columnElement)) return;
+      const nextColumn = Number(columnElement.dataset.driftColumn);
+      if (nextColumn !== hoveredColumn) {
+        plane.querySelector('.is-active')?.classList.remove('is-active');
+        columns.forEach((column, i) => column.element.classList.toggle('is-hovered', i === nextColumn));
+      }
       pointerInside = true;
-      const rect = wall.getBoundingClientRect();
-      pointer = { x: (event.clientX - rect.left) / rect.width - 0.5, y: (event.clientY - rect.top) / rect.height - 0.5 };
+      hoveredColumn = nextColumn;
+      columns[nextColumn].velocity = 0;
       const tile = event.target.closest('[data-drift-review]');
+      if (!tile) return;
       const previous = plane.querySelector('.is-active');
       if (previous !== tile) {
         previous?.classList.remove('is-active');
-        tile?.classList.add('is-active');
+        tile.classList.add('is-active');
       }
-      hoveredColumn = tile ? Number(tile.dataset.driftColumn) : -1;
     });
     wall.addEventListener('pointerleave', clearHover);
+    wall.addEventListener('pointercancel', clearHover);
+    window.addEventListener('blur', clearHover);
     wall.addEventListener('click', event => {
       const tile = event.target.closest('[data-drift-review]');
       if (!tile) return;
@@ -249,18 +257,10 @@
       returnFocus?.focus({ preventScroll: true });
       syncAnimation();
     });
-    pause.addEventListener('click', () => {
-      userPaused = !userPaused;
-      pause.setAttribute('aria-pressed', String(userPaused));
-      pause.setAttribute('aria-label', userPaused ? 'Riprendi il movimento delle recensioni' : 'Metti in pausa il movimento delle recensioni');
-      pause.textContent = userPaused ? 'Riprendi' : 'Pausa';
-      wall.classList.toggle('is-paused', userPaused);
-      syncAnimation();
-    });
     toggle.addEventListener('click', () => { listMode = !listMode; clearHover(); syncMode(); });
     reduced.addEventListener('change', syncMode);
     compact.addEventListener('change', syncMode);
-    document.addEventListener('visibilitychange', syncAnimation);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) clearHover(); syncAnimation(); });
     new IntersectionObserver(entries => {
       inView = entries[0].isIntersecting;
       syncAnimation();

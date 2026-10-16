@@ -1,0 +1,17 @@
+/* AnimatedContent-style entry, limited to the hero. The page is visible without JS. */
+.hero [data-rp-hero-reveal="pending"] {
+  opacity: 0;
+  translate: 0 64px;
+}
+
+.hero [data-rp-hero-reveal="playing"] {
+  will-change: opacity, translate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero [data-rp-hero-reveal] {
+    opacity: 1 !important;
+    translate: none !important;
+    will-change: auto;
+  }
+}
