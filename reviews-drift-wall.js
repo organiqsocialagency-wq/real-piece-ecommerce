@@ -106,7 +106,7 @@
       text.className = 'reviews-drift-excerpt';
       const paragraphs = [...article.querySelectorAll('blockquote p, :scope > p:not(.review-fit)')];
       text.textContent = paragraphs.map(p => p.textContent.trim()).join(' ');
-      inner.append(top, title);
+      inner.append(title, top);
       if (text.textContent) inner.append(text);
       const photos = [...article.querySelectorAll('.review-photo img')];
       if (photos.length) {

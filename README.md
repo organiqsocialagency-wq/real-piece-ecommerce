@@ -29,3 +29,5 @@ La spedizione è gratuita da 50 € di prodotti **dopo gli sconti**; altrimenti 
 Le recensioni sono presentate in un DriftWall adattato dal componente React Bits fornito, con colonne alternate, arresto immediato della colonna al passaggio del mouse e lettura completa. Su mobile e con movimento ridotto restano disponibili gli articoli statici originali.
 
 La hero usa una comparsa AnimatedContent con fade, salita di 64 px e ingresso progressivo di titolo, testo e CTA; l’header non è animato. L’effetto viene eseguito una volta ed è disabilitato con movimento ridotto.
+
+Tutte le recensioni usano lo stile della lettera su carta antica approvato: carta e sigillo RP in ceralacca sono due elementi decorativi riutilizzabili generati con imagegen. Testi, stelle e foto originali restano HTML accessibile nella parete, nell’elenco mobile e nella lettura completa.

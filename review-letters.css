@@ -1,0 +1,198 @@
+/* The approved pirate letter, with reusable paper and wax artwork. */
+.reviews {
+  --letter-ink: #27251e;
+  --letter-muted: #655a45;
+  --letter-red: #932c2b;
+  --letter-paper: url('assets/review-letter/parchment.webp');
+  --letter-seal: url('assets/review-letter/wax-seal.webp');
+  background: radial-gradient(ellipse at 50% 5%, #214550 0, #12313c 48%, #102b35 100%);
+  border-color: #37505a;
+  color: #f7efdb;
+}
+.reviews-heading h2 { max-width: 680px; }
+.reviews-heading .eyebrow { color: #d7b38f; }
+.reviews-disclosure, .reviews-drift-hint { color: #c9d2cf; }
+.reviews-drift-control { border-color: #8b9a97; color: #f7efdb; }
+.reviews-drift-control:hover { background: #284751; border-color: #c4cec8; }
+.reviews-drift-control--read { background: #f3e8cc; border-color: #f3e8cc; color: #24383c; }
+.reviews-drift-control--read:hover { background: #e5d4b1; border-color: #e5d4b1; }
+
+/* Transparent edges reveal the sea-blue surround instead of a rectangular card. */
+.review-card, .reviews-drift-inner {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--letter-ink, #27251e);
+}
+.review-card::before, .reviews-drift-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--letter-paper, url('assets/review-letter/parchment.webp')) center / 100% 100% no-repeat,
+    linear-gradient(#f3e6cb, #f3e6cb) center / 94% 94% no-repeat;
+  filter: drop-shadow(0 9px 5px #03101938);
+  pointer-events: none;
+}
+.review-card::after, .reviews-drift-inner::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  width: 64px;
+  aspect-ratio: 1;
+  top: 21px;
+  right: 23px;
+  background: var(--letter-seal, url('assets/review-letter/wax-seal.webp')) center / contain no-repeat;
+  pointer-events: none;
+}
+.review-card {
+  display: flex;
+  flex-direction: column;
+  padding: 37px 36px 34px;
+  filter: drop-shadow(0 8px 8px #0310191a);
+}
+.review-card-top { order: 2; min-height: 18px; margin: 0 0 21px; gap: 10px; }
+.review-card h3 {
+  order: 1;
+  padding-right: 65px;
+  margin: 0 0 17px;
+  font-family: var(--serif);
+  font-size: 25px;
+  line-height: 1.24;
+  color: var(--letter-ink, #27251e);
+}
+.review-card p, .review-card blockquote {
+  order: 3;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--letter-ink, #27251e);
+  font-size: 16px;
+  line-height: 1.75;
+}
+.review-card .review-stars { color: var(--letter-red, #932c2b); }
+.review-card .review-star-empty { color: #a99a7b; }
+.review-photo-label { color: var(--letter-muted, #655a45); font-size: 9px; }
+.review-featured { display: block; }
+.review-featured-copy { display: flex; flex-direction: column; }
+.review-featured h3 { font-size: 32px; }
+.review-featured .review-fit { order: 2; font-family: inherit; color: var(--letter-muted, #655a45); }
+.review-card .review-photos { order: 4; margin-top: 20px; gap: 14px; }
+.review-photo {
+  padding: 5px 5px 25px;
+  border: 1px solid #d6c29d;
+  border-radius: 0;
+  background: #f6ecd7;
+  box-shadow: 0 3px 7px #56401d1a;
+}
+.review-photo img { background: #e9ddc4; }
+.review-photo > span {
+  left: 8px;
+  bottom: 7px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  color: #63533a;
+  font-size: 8px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+.review-photo:focus-visible, .reviews-drift-control:focus-visible {
+  outline: 2px solid #bb795c;
+  outline-offset: 4px;
+}
+.review-quality { display: flex; }
+.review-quality h3 { font-size: 27px; }
+.review-letter-footer {
+  display: block;
+  order: 5;
+  margin-top: auto;
+  padding-top: 21px;
+  color: #6b5b41;
+  font-size: 8px;
+  letter-spacing: 1.6px;
+  line-height: 1.5;
+}
+.review-letter-footer::before { content: ''; display: block; height: 1px; margin-bottom: 13px; background: #bba77d80; }
+
+/* Keep the stationary tile hitbox and exact column freeze from DriftWall. */
+.reviews-drift-inner {
+  position: absolute;
+  padding: 25px 24px 23px;
+  overflow: visible;
+  opacity: 1;
+  box-shadow: none;
+}
+.reviews-drift-inner::after { width: 46px; top: 18px; right: 16px; }
+.reviews-drift-title {
+  padding-right: 36px;
+  font-size: 23px;
+  line-height: 1.16;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.reviews-drift-tile-top { margin-bottom: 12px; min-height: 14px; flex-shrink: 0; }
+.reviews-drift-tile .review-stars { color: #932c2b; font-size: 12px; }
+.reviews-drift-tile .review-star-empty { color: #a99a7b; }
+.reviews-drift-label { color: #675a43; font-size: 7px; }
+.reviews-drift-excerpt { color: #3b352a; font-family: Georgia, 'Times New Roman', serif; font-size: 13px; line-height: 1.55; }
+.reviews-drift-read {
+  color: #873331;
+  font-size: 7px;
+  letter-spacing: 1px;
+  padding-top: 10px;
+  flex-shrink: 0;
+}
+.reviews-drift-photos { flex-shrink: 0; height: 72px; gap: 8px; }
+.reviews-drift-photos img { height: 72px; width: 65px; border: 3px solid #f4ead2; border-radius: 0; box-shadow: 0 1px 3px #51402530; }
+.reviews-drift-tile--photos .reviews-drift-title { font-size: 22px; }
+.reviews-drift-tile--photos .reviews-drift-excerpt { font-size: 12px; -webkit-line-clamp: 2; }
+.reviews-drift-tile.is-active .reviews-drift-inner { box-shadow: none; }
+
+/* The full letter carries the same paper, photos and seal as every preview. */
+.reviews-drift-dialog {
+  --letter-ink: #27251e;
+  --letter-muted: #655a45;
+  --letter-red: #932c2b;
+  background: #102e39;
+  border: 1px solid #547079;
+  border-radius: 4px;
+  padding: 47px 18px 18px;
+  color: var(--letter-ink);
+}
+.reviews-drift-dialog .close-dialog { background: transparent; color: #f7efdb; right: 14px; top: 6px; }
+.reviews-drift-dialog .review-card { padding: 42px 40px 37px; }
+.reviews-drift-dialog .review-featured { display: block; }
+.reviews-drift-dialog .review-quality { display: flex; }
+.reviews-drift-dialog .review-card h3 { font-size: 32px; padding-right: 70px; }
+.reviews-drift-dialog .review-card p { font-size: 17px; line-height: 1.8; }
+.reviews-drift-dialog .review-card .review-fit { font-family: inherit; font-size: 10px; letter-spacing: 1.1px; }
+.reviews-drift-dialog .review-card-top { margin-bottom: 20px; }
+.reviews-drift-dialog .review-photos, .reviews-drift-dialog .review-quality .review-photos { width: 100%; max-width: none; align-self: stretch; margin-top: 22px; }
+.reviews-drift-dialog .review-photo { aspect-ratio: 1; }
+
+@media (min-width: 701px) and (max-width: 1100px) {
+  .reviews-drift-inner { padding: 25px 23px 23px; }
+  .reviews-drift-title { font-size: 22px; }
+  .review-card { padding: 35px 30px 30px; }
+}
+@media (max-width: 700px) {
+  .reviews-heading h2 { font-size: 35px; }
+  .review-card { padding: 33px 28px 31px; }
+  .review-card::after { width: 55px; top: 18px; right: 17px; }
+  .review-card h3, .review-featured h3, .review-quality h3 { font-size: 26px; padding-right: 47px; }
+  .review-card p { font-size: 16px; }
+  .review-card-top { margin-bottom: 18px; }
+  .review-card .review-photos { gap: 9px; margin-top: 17px; }
+  .review-quality { display: flex; }
+  .reviews-grid, .reviews-with-photos { gap: 21px; }
+  .reviews-drift-dialog { padding: 45px 8px 8px; }
+  .reviews-drift-dialog .review-card { padding: 34px 26px 30px; }
+  .reviews-drift-dialog .review-card h3 { font-size: 27px; padding-right: 50px; }
+  .reviews-drift-dialog .review-card p { font-size: 16px; }
+  .reviews-drift-dialog .review-photo { aspect-ratio: 3 / 4; }
+}
