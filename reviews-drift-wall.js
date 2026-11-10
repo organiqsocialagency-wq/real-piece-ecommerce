@@ -25,7 +25,7 @@
     toolbar.className = 'reviews-drift-toolbar';
     const hint = document.createElement('p');
     hint.className = 'reviews-drift-hint';
-    hint.textContent = 'Passa su una recensione per fermare la colonna. Selezionala per leggerla.';
+    hint.textContent = 'Passa su una lettera per fermare la colonna. Selezionala per aprirla.';
     const controls = document.createElement('div');
     controls.className = 'reviews-drift-controls';
     const toggle = document.createElement('button');
@@ -82,6 +82,8 @@
       tile.className = 'reviews-drift-tile';
       tile.dataset.driftReview = String(reviewIndex);
       tile.dataset.driftColumn = String(columnIndex);
+      const isProductGallery = article.classList.contains('review-product-photos');
+      if (isProductGallery) tile.classList.add('reviews-drift-tile--product-photos');
       const inner = document.createElement('span');
       inner.className = 'reviews-drift-inner';
       const top = document.createElement('span');
@@ -93,10 +95,11 @@
         clone.removeAttribute('aria-label');
         top.append(clone);
       }
-      if (!article.classList.contains('review-example')) {
+      const photoLabel = article.querySelector('.review-photo-label');
+      if (photoLabel) {
         const label = document.createElement('span');
         label.className = 'reviews-drift-label';
-        label.textContent = 'Recensione con foto';
+        label.textContent = photoLabel.textContent;
         top.append(label);
       }
       const title = document.createElement('span');
@@ -126,7 +129,7 @@
       }
       const read = document.createElement('span');
       read.className = 'reviews-drift-read';
-      read.textContent = 'Leggi la recensione';
+      read.textContent = isProductGallery ? 'Guarda le foto' : 'Leggi la recensione';
       inner.append(read);
       tile.append(inner);
       return tile;
@@ -153,8 +156,8 @@
         }
         column.append(track);
         fragment.append(column);
-        // Keep the two supplied photo reviews visible in the first view.
-        const offset = c < 2 ? period - (240 + c * 80) : period * ((c * 0.37 + 0.08) % 1);
+        // The first item in each column has photos; stagger them in the first view.
+        const offset = period - (240 + c * 48);
         track.style.transform = `translate3d(0, ${-offset}px, 0)`;
         const pseudo = ((c * 0.6180339887 + 0.35) % 1) * 2 - 1;
         return { element: column, track, period, offset, velocity: 0, speed: 26 * (1 + 0.35 * pseudo) * (c % 2 === 0 ? 1 : -1) };

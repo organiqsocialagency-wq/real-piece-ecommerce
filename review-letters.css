@@ -103,6 +103,13 @@
 }
 .review-quality { display: flex; }
 .review-quality h3 { font-size: 27px; }
+.review-product-photos .review-card-top { margin-bottom: 0; }
+.review-product-photos .review-photo-label {
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+.review-product-photos .review-photos--single { grid-template-columns: minmax(0, 1fr); }
+.review-product-photos .review-photo { height: clamp(140px, 16vw, 205px); aspect-ratio: auto; }
 .review-letter-footer {
   display: block;
   order: 5;
@@ -151,6 +158,14 @@
 .reviews-drift-photos img { height: 72px; width: 65px; border: 3px solid #f4ead2; border-radius: 0; box-shadow: 0 1px 3px #51402530; }
 .reviews-drift-tile--photos .reviews-drift-title { font-size: 22px; }
 .reviews-drift-tile--photos .reviews-drift-excerpt { font-size: 12px; -webkit-line-clamp: 2; }
+.reviews-drift-tile--product-photos .reviews-drift-photos { height: 96px; }
+.reviews-drift-tile--product-photos .reviews-drift-photos img {
+  width: min(46%, 101px);
+  height: 100%;
+  object-fit: contain;
+  background: #e9ddc4;
+}
+.reviews-drift-tile--product-photos .reviews-drift-photos img:only-child { width: min(100%, 155px); }
 .reviews-drift-tile.is-active .reviews-drift-inner { box-shadow: none; }
 
 /* The full letter carries the same paper, photos and seal as every preview. */
@@ -174,6 +189,7 @@
 .reviews-drift-dialog .review-card-top { margin-bottom: 20px; }
 .reviews-drift-dialog .review-photos, .reviews-drift-dialog .review-quality .review-photos { width: 100%; max-width: none; align-self: stretch; margin-top: 22px; }
 .reviews-drift-dialog .review-photo { aspect-ratio: 1; }
+.reviews-drift-dialog .review-product-photos .review-photo { height: clamp(165px, 42dvh, 330px); aspect-ratio: auto; }
 
 @media (min-width: 701px) and (max-width: 1100px) {
   .reviews-drift-inner { padding: 25px 23px 23px; }
